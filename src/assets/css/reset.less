@@ -1,0 +1,717 @@
+@import "variable.less";
+* {box-sizing: border-box; -webkit-tap-highlight-color: rgba(0,0,0,0);}
+/* 禁用iPhone中Safari的字号自动调整 */
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    /* 解决IOS默认滑动很卡的情况 */
+    -webkit-overflow-scrolling : touch;
+    font-size: 62.5%;
+}
+body{ background: #F4F5F7; }
+body,
+dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6,
+pre, code, form, fieldset, legend, input, textarea,
+p, blockquote, th, td, hr, button,
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+  margin: 0;
+  padding: 0;
+  font-size: 1.4rem;
+  color: #141414;
+}
+ul, ol {list-style: none;}
+table {border-collapse: collapse; border-spacing: 0;}
+input, select, button, textarea {font-size: 100%; font: inherit; -webkit-appearance: none; /*在iOS上，清除输入框默认有内部阴影*/}
+
+/* 取消链接高亮 (点击时候黑色阴影) */
+body, div, ul, li, ol, h1, h2, h3, h4, h5, h6, input, textarea, select, p, dl, dt, dd, a, img, button, form, table, th, tr, td, tbody, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-size: 1.4rem;
+    color: @baseColor;
+}
+/* 隐藏滚动条 */
+body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    color: transparent;
+    height: 0;
+}
+/* 按钮文本不可选 */
+button {user-select: none;}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #999;  /*输入框提示语的字体样式*/
+}
+button,input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+    -webkit-appearance: button;  /*渲染成button的风格*/
+    text-transform: none;
+    outline: none;
+}
+input::-webkit-inner-spin-button {/*解决input的type="number"在部分手机端会出现一个小按钮*/
+    -webkit-appearance: none;/*去除系统默认appearance的样式,常用于IOS下移除原生样式*/
+}
+textarea[readonly]{
+    color:#AEBFCF;
+}
+
+/* 默认不要下划线 */
+a {text-decoration: none;background: transparent; -webkit-tap-highlight-color: transparent; color: #000; }
+/* 移动端点击a链接出现蓝色背景问题解决 */
+a:link,a:active,a:visited,a:hover {
+    background: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 加载不出来的图片不要显示灰色边框 */
+img:not([src]),img[src=""] {opacity: 0;}
+// img {vertical-align: middle; border:none;max-width: 100% !important; }
+/* 设置HTML5元素为块 */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+
+
+/* 清除浮动 */
+
+.cdct_clearfix::before,
+.cdct_clearfix::after {
+    display: table;
+    content: " ";
+}
+
+.cdct_clearfix::after {
+    clear: both;
+}
+
+.cdct_clearfix {
+    *zoom: 1;
+}
+
+
+/*单行溢出*/
+.cdct_onetxtcut{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+/*多行溢出 手机端使用*/
+.cdct_txtcut{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.weui-toast{
+    width: 12rem !important;
+}
+
+.cdct_relative{
+    position: relative;
+}
+
+// 公用样式
+.cdct_container{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .vux-header{
+        background: #fff;
+        padding: 2px 0;
+        box-shadow:0px 2px 13px 0px rgba(217,217,217,0.5);
+        .vux-header-left {
+            left: 0;
+            top: 0;
+            .left-arrow{
+                left: 0;
+                top: 0;
+                height: 44px;
+                width: 60px;
+                &:before{
+                    border-color: #575757;
+                    border-width: 1px 0 0 1px;
+                    top: 16px;
+                    left: 25px;
+                }
+            }
+
+        }
+        .vux-header-title{
+            color: #333;
+            font-size: 16px;
+        }
+        .vux-header-right{
+            color: @color1;
+            font-size: 16px;
+            right: 0;
+            padding: 0 20px;
+            top: 0;
+            .vertical(44px);
+        }
+    }
+    .cdct_content{
+        width: 100%;
+        height: calc(~"100% - 44px");
+        padding: 10px;
+        box-sizing: border-box;
+        .wrapper{
+            width: 100%;
+            .scrollContent{
+                padding-top: 0;
+            }
+        }
+        .cdct_operation{
+            .vertical(52px);
+            background: #fff;
+            padding: 0 16px;
+            color: #333;
+            font-weight: 600;
+            font-size: 18px;
+            border-radius: 4px 4px 0 0;
+            .vux-1px-b;
+        }
+        .cdct_main{
+            width: 100%;
+            background: #fff;
+            padding: 20px 0 20px 25px;
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            .cdct_title{
+                color: #19293F;
+                width: 100%;
+                font-size: 16px;
+                margin-bottom: 20px;
+                &:before{
+                    display: inline-block;
+                    vertical-align: middle;
+                    content: '';
+                    width: 23px;
+                    height: 23px;
+                    background-image: url("@{images}/icon1.png");
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    margin-right: 10px;
+                    
+                }
+            }
+
+
+            
+
+            // 表格
+            .cdct_table{
+                width: calc(~'100% - 98px');
+                margin-left: 78px;
+                border-left: solid 1px @borderColor;
+                border-top: solid 1px @borderColor;
+                margin-bottom: 20px;
+                .cdct_thead,.cdct_tr{
+                    display: flex;
+                    width: 100%;
+                    background: #FAFBFC;
+                    .cdct_td{
+                        flex: 1;
+                        .vertical(50px);
+                        text-align: center;
+                        border-bottom: solid 1px @borderColor;
+                        border-right: solid 1px @borderColor;
+                        .el-input__inner{
+                            height: 37px;
+                            border-color: @borderColor;
+                            color: @baseColor;
+                        }
+                    }
+                    .cdct_td:last-child{
+                        max-width: 128px;
+                    }
+                }
+                .cdct_tr{
+                   background: #F1F7FF;
+                   .cdct_td{
+                        .vertical(60px);
+                   }
+                   .cdct_del{
+                        color: @color1;
+                        &:before{
+                            content: '';
+                            display: inline-block;
+                            width: 15px;
+                            height: 18px;
+                            background: url("@{images}/del.png") no-repeat;
+                            background-size: cover;
+                            vertical-align: middle;
+                            margin-right: 4px;
+                        }
+                   }
+
+                }
+                
+
+            }
+        }
+
+        // 单位
+        .cdct_unit{
+            position: relative;
+            &:after{
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #5F7397;
+            }
+        }
+        .unit1.cdct_unit{
+            &:after{
+                content: '元';
+            }
+        }
+    }
+
+    .cdct_btn{
+        display: inline-block;
+        width: 88px;
+        .vertical(32px);
+        text-align: center;
+        background:linear-gradient(90deg,#30C2FA,#0293FD);
+        color: #fff;
+        border-radius: 2px;
+        margin-right: 10px;
+    }
+    .cdct_btn.orange{
+        background:linear-gradient(90deg,#FCB074,#F68833);
+    }
+
+    // 错误提示
+    .cdct_error{
+        position: absolute;
+        left: 80px;
+        color: #D0021B;
+        font-size: 14px;
+        top: 39px;
+    }
+    .cdct_textarea {
+        display: flex;
+        width: 100%;
+        margin-right: 28px;
+        margin-bottom: 20px;
+        .cdct_info{
+            position: relative;
+            width:60px;
+            height: 40px;
+            margin-right: 10px;
+            span{
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                color: #5F7397;
+                line-height: 18px;
+            }
+        }
+        .weui-cell{
+            border: 1px solid @borderColor;
+            border-radius: 4px;
+            flex: 1;
+            &:before{
+                border: none;
+            }
+        }
+        .spe_textarea.vux-x-textarea{
+            padding: 8px 15px;
+            .weui-cell__bd{
+                .weui-textarea-counter{
+                    position: absolute;
+                    right: 15px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+            
+        }
+
+
+        
+    }
+
+}
+
+// 输入框
+.cdct_inputBox,.cdct_inputSelect,.cdct_checkBox,.cdct_adr{
+    position: relative;
+    display: flex;
+    width: 270px;
+    margin-right: 48px;
+    margin-bottom: 20px;
+    .el-input__inner{
+        border-color: @borderColor;
+        color: @baseColor;
+        font-size: 1.4rem;
+    }
+    .cdct_choose{
+        border: solid 1px @borderColor;
+        color: @color1;
+        width: 110px;
+        .vertical(40px);
+        text-align: center;
+        border-radius:4px;
+        &:before{
+            content: '';
+            display: inline-block;
+            height: 11px;
+            width: 11px;
+            background-image: url("@{images}/add.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin-right: 6px;
+        }
+    }
+    .cdct_choose1{
+        border: solid 1px @borderColor;
+        color: @color1;
+        width: 71px;
+        .vertical(40px);
+        text-align: center;
+        border-radius:4px;
+    }
+    .cdct_info{
+        position: relative;
+        width: 60px;
+        height: 40px;
+        margin-right: 10px;
+        span{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            color: #5F7397;
+            font-size: 14px;
+            line-height: 18px;
+        }
+    }
+    .cdct_input,.cdct_time{
+        width: 200px;
+        height: 40px;
+        box-sizing: border-box;
+        border: 1px solid @borderColor;
+        border-radius: 4px;
+        padding: 5px 10px;
+        vertical-align: middle;
+        font-size: 14px;
+        outline: none;
+        color: #19293F;
+        .weui-cell_access .weui-cell__ft:after{
+            border: none;
+            border: 0;
+        }
+    }
+    .cdct_input{
+        padding: 0 10px;
+    }
+   
+    .cdct_input[disabled]{
+        color: #AEBFCF;
+        background: #fff;
+        border: 1px solid #E4E9EF;
+        opacity:1;
+    }
+    .cdct_time.weui-cell{
+        .vux-cell-placeholder{
+            color: #999;
+        }
+        &:before{
+            border: none;
+        }
+        .weui-cell__ft{
+            color: @baseColor;
+            text-align: left;
+        }
+    }
+    .cdct_time.spe_time.weui-cell{
+        .weui-cell__ft{
+            margin-top: -6px;
+        }
+    }
+    .cdct_btn{
+        margin-right: 10px;
+    }
+    
+
+}
+.cdct_checkBox{
+    width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+    .chk_content{
+        flex:1;
+    }
+    .cdct_error{
+        left: 0;
+    }
+    .cdct_chk{
+        .cdct_error{
+            top: 30px;
+        }
+        .cdct_time,.cdct_input{
+            margin-bottom: 10px;
+        }
+    }
+}
+
+// 左右结构样式重置
+.cdct_right.cdct_container{
+    .cdct_error{
+        left: 66px;
+    }
+    .cdct_content{
+        height: 100%;
+        padding: 0;
+        .cdct_main{
+            .cdct_inputBox,.cdct_inputSelect,.cdct_adr,{
+                width: 234px;
+                margin-right: 26px;
+                .cdct_info{
+                    margin-right: 6px;
+                }
+                .cdct_input,.cdct_time{
+                    width: 168px;
+                }
+                .cdct_choose1{
+                    width: 60px;
+                }
+            }
+            .cdct_textarea{
+                margin-right: 16px;
+                .cdct_info{
+                    margin-right: 6px;
+                }
+            }
+
+            
+            .el-box{
+                width: 168px;
+            }
+            .cdct_table{
+                width: calc(~'100% - 89px');
+                margin-left: 66px;
+                .cdct_thead,.cdct_tr{
+                    .cdct_td:last-child{
+                        max-width: 108px;
+                    }
+                }
+                .el-box{
+                    width: 160px;
+                }
+            }
+        }
+    }
+    
+}
+
+/* 星号 */
+.cdct_asterisk{
+    position: relative;
+}
+.cdct_asterisk::before{
+    content: "*";
+    position: absolute;
+    left: -13px;
+    color: #D0021B;
+    font-size: 20px;
+    top: 12px;
+    line-height: 20px;
+}
+
+
+
+/* 复选框  单选框 */
+
+.cdct_chk input[type=checkbox] {
+    cursor: pointer;
+    opacity: 0;
+    z-index: 1;
+    outline: 0;
+    display: none;
+}
+
+.cdct_chk,.cdct_radio {
+    position: relative;
+    display: inline-block;
+    margin-right: 50px;
+    line-height: 40px;
+    margin-bottom: 8px;
+}
+
+.cdct_chk label::after {
+    color: #333;
+    display: inline-block;
+    font-size: 11px;
+    height: 16px;
+    left: 0;
+    padding-left: 3px;
+    padding-top: 1px;
+    position: absolute;
+    top: 0;
+    width: 16px;
+    line-height: 16px;
+    box-sizing: border-box;
+            
+}
+
+.cdct_chk label::before,.cdct_radio label::before {
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #ced0da;
+    content: "";
+    display: inline-block;
+    height: 17px;
+    left: 0;
+    position: absolute;
+    transition: .3s ease-in-out;
+    width: 17px;
+    outline: 0;
+    box-sizing: border-box;
+            
+}
+
+.cdct_radio label::before {
+    border-radius: 50%;         
+    border: 1px solid rgba(120, 130, 140, .5);
+}
+
+
+.cdct_chk label,.cdct_radio label {
+    display: inline-block;
+    padding-left: 25px;
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+    position: relative;
+}
+
+.cdct_radio label::after {
+    background-color: #313131;
+    border-radius: 50%;
+    content: " ";
+    display: inline-block;
+    height: 7px;
+    position: absolute;
+    transform: scale(0, 0);
+    transition: transform .3s cubic-bezier(.8, -.33, .2, 1.33);
+    width: 7px;
+    left: 5px;
+}
+
+.cdct_radio label::before,
+.cdct_radio label::after ,
+.cdct_chk label::before,
+.cdct_chk label::after{
+    box-sizing: border-box;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+.cdct_chk input[type=checkbox]:disabled+label::before {
+    background-color: #e4e7ea;
+    cursor: not-allowed;
+}
+
+
+.cdct_chk input[type=checkbox]:disabled+label {
+    opacity: .65;
+}
+input[type=radio]:disabled+label::before {
+    background-color: #e4e7ea;
+    cursor: not-allowed;
+}
+
+
+input[type=radio]:disabled+label {
+    opacity: .65;
+}
+
+
+.cdct_chk_suc input[type=checkbox]:checked+label::before {
+    background-color: #fff;
+    border: 1px solid #CED7E3;
+}
+
+.cdct_chk_suc input[type=checkbox]:checked+label::after {
+    color: @color1;
+}
+
+
+.cdct_chk input[type=checkbox]:focus+label::before {
+    outline-offset: -2px;
+    outline: 0;
+    outline: dotted thin;
+}
+
+.cdct_chk input[type=checkbox]:checked+label::after {
+    content: "\f00c";
+    font-family: FontAwesome;
+}
+
+.cdct_radio input[type=radio]:checked+label::after {
+    transform: scale(1, 1);
+}
+
+.cdct_radio input[type=radio] {
+    cursor: pointer;
+    opacity: 0;
+    z-index: 1;
+    outline: 0;
+    display: none;
+}
+
+.cdct_radio_suc input[type=radio]:checked+label::after {
+    background-color: #53e69d;
+}
+
+.cdct_radio_suc input[type=radio]+label::after {
+    background-color: #53e69d;
+}
+
+.cdct_radio_suc input[type=radio]:checked+label::before {
+    border-color: #53e69d;
+}
+
+@font-face {
+    font-family: FontAwesome;
+    src: url(./inputStyle/fontawesome-webfont.eot?v=4.5.0);
+    src: url(./inputStyle/fontawesome-webfont.eot?#iefix&v=4.5.0) format('embedded-opentype'), url(inputStyle/fontawesome-webfont.woff2?v=4.5.0) format('woff2'), url(inputStyle/fontawesome-webfont.woff?v=4.5.0) format('woff'), url(inputStyle/fontawesome-webfont.ttf?v=4.5.0) format('truetype'), url(inputStyle/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular) format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.error{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 32vw 32vw;
+    background-position: 50% 50%;
+    color: #999;
+    font-size:1.6rem;
+    padding-top: 62vh;
+    text-align: center;
+    z-index: -1;
+}
+//VUE图片预览插件顶部状态栏预留
+.pswp__top-bar{
+    top:20px!important;
+}
+
+
+
